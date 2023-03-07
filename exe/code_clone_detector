@@ -21,9 +21,11 @@ sx = 0
 ex = 0
 sy = 0
 ey = 0
+index1 = 0
+index2 = 0
 
 (0..code.size - 2).each do |a|
-  (a + 1..code.size - 1).each do |_b|
+  (a + 1..code.size - 1).each do |b|
     array = []
 
     x = 0
@@ -75,17 +77,25 @@ ey = 0
     ex = tmp_ex
     sy = tmp_sy
     ey = tmp_ey
+    index1 = a
+    index2 = b
   end
 end
 
-print "#{code[1][0]}:#{code[1][1][sy][0][0]},#{code[1][1][sy][0][1]} ~ #{code[1][1][ey][0][0]},#{code[1][1][ey][0][1]}\n"
+file_1_name = code[index1][0]
+file1 = code[index1][1]
+file_2_name = code[index2][0]
+file2 = code[index2][1]
+print "#{file_1_name}:"
+print "#{file1[sy][0][0]},#{file1[sy][0][1]} ~ #{file1[ey][0][0]},#{file1[ey][0][1]}\n"
 code[1][1][sy..ey].transpose[2].each do |i|
   print i
 end
 
 puts "\n"
 
-print "#{code[3][0]}:#{code[3][1][sx][0][0]},#{code[3][1][sx][0][1]} ~ #{code[3][1][ex][0][0]},#{code[3][1][ex][0][1]}\n"
+print "#{file_2_name}:"
+print "#{file2[sx][0][0]},#{file2[sx][0][1]} ~ #{file2[ex][0][0]},#{file2[ex][0][1]}\n"
 code[3][1][sx..ex].transpose[2].each do |i|
   print i
 end
