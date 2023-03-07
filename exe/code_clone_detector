@@ -1,0 +1,92 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "code_clone_detector"
+
+require "ripper"
+
+code = []
+
+Dir.glob("**/*") do |item|
+  if item.include?(".rb")
+    File.open(item, "r") do |f|
+      tmp = f.read
+      code.push([item.to_s, Ripper.lex(tmp)])
+    end
+  end
+end
+
+max = 0
+sx = 0
+ex = 0
+sy = 0
+ey = 0
+
+for a in 0..code.size-2
+  for b in a+1..code.size-1
+
+    array = []
+
+    x = 0
+
+    code[1][1].each do |i|
+      array.push([])
+      code[3][1].each do |j|
+        if i[1] == j[1]
+          array[x].push(1)
+        else
+          array[x].push(0)
+        end
+      end
+      x += 1
+    end
+
+    tmp_max = 0
+    tmp_sx = 0
+    tmp_ex = 0
+    tmp_sy = 0
+    tmp_ey = 0
+    array.size.times do |i|
+      array[i].size.times do |j|
+        next unless array[i - 1][j - 1].nil? || array[i - 1][j - 1].zero?
+        next unless array[i][j] == 1
+
+        maxv = 1
+        x = j
+        y = i
+        while !array[y + 1].nil? && !array[y + 1][x + 1].nil? && array[y + 1][x + 1] == 1
+          maxv += 1
+          x += 1
+          y += 1
+        end
+        next unless maxv > tmp_max
+
+        tmp_max = maxv
+        tmp_sx = j
+        tmp_ex = x
+        tmp_sy = i
+        tmp_ey = y
+      end
+    end
+
+    next unless tmp_max > max
+
+    max = tmp_max
+    sx = tmp_sx
+    ex = tmp_ex
+    sy = tmp_sy
+    ey = tmp_ey
+  end
+end
+
+print "#{code[1][0]}:#{code[1][1][sy][0][0]},#{code[1][1][sy][0][1]} ~ #{code[1][1][ey][0][0]},#{code[1][1][ey][0][1]}\n"
+code[1][1][sy..ey].transpose[2].each do |i|
+  print i
+end
+
+puts "\n"
+
+print "#{code[3][0]}:#{code[3][1][sx][0][0]},#{code[3][1][sx][0][1]} ~ #{code[3][1][ex][0][0]},#{code[3][1][ex][0][1]}\n"
+code[3][1][sx..ex].transpose[2].each do |i|
+  print i
+end
