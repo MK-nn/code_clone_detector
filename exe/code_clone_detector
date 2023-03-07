@@ -30,10 +30,10 @@ index2 = 0
 
     x = 0
 
-    code[1][1].each do |i|
+    code[a][1].each do |i|
       array.push([])
-      code[3][1].each do |j|
-        if i[1] == j[1]
+      code[b][1].each do |j|
+        if i[2] == j[2]
           array[x].push(1)
         else
           array[x].push(0)
@@ -47,6 +47,7 @@ index2 = 0
     tmp_ex = 0
     tmp_sy = 0
     tmp_ey = 0
+
     array.size.times do |i|
       array[i].size.times do |j|
         next unless array[i - 1][j - 1].nil? || array[i - 1][j - 1].zero?
@@ -92,7 +93,7 @@ code[1][1][sy..ey].transpose[2].each do |i|
   print i
 end
 
-puts "\n"
+puts "===============================\n\n"
 
 print "#{file_2_name}:"
 print "#{file2[sx][0][0]},#{file2[sx][0][1]} ~ #{file2[ex][0][0]},#{file2[ex][0][1]}\n"
