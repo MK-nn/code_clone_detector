@@ -22,9 +22,8 @@ ex = 0
 sy = 0
 ey = 0
 
-for a in 0..code.size-2
-  for b in a+1..code.size-1
-
+(0..code.size - 2).each do |a|
+  (a + 1..code.size - 1).each do |_b|
     array = []
 
     x = 0
