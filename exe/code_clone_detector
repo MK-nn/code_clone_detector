@@ -3,15 +3,15 @@
 
 require "code_clone_detector"
 
-require "ripper"
+require 'ripper'
 
 code = []
 
-Dir.glob("**/*") do |item|
-  if item.include?(".rb")
-    File.open(item, "r") do |f|
-      tmp = f.read
-      code.push([item.to_s, Ripper.lex(tmp)])
+Dir.glob('**/*') do |file_name|
+  if file_name.include?('.rb')
+    File.open(file_name, 'r') do |file|
+      file_content = file.read
+      code.push([file_name.to_s, Ripper.lex(file_content)])
     end
   end
 end
@@ -89,14 +89,14 @@ file_2_name = code[index2][0]
 file2 = code[index2][1]
 print "#{file_1_name}:"
 print "#{file1[sy][0][0]},#{file1[sy][0][1]} ~ #{file1[ey][0][0]},#{file1[ey][0][1]}\n"
-code[1][1][sy..ey].transpose[2].each do |i|
+code[index1][1][sy..ey].transpose[2].each do |i|
   print i
 end
 
-puts "===============================\n\n"
+puts '===============================\n\n'
 
 print "#{file_2_name}:"
 print "#{file2[sx][0][0]},#{file2[sx][0][1]} ~ #{file2[ex][0][0]},#{file2[ex][0][1]}\n"
-code[3][1][sx..ex].transpose[2].each do |i|
+code[index2][1][sx..ex].transpose[2].each do |i|
   print i
 end
