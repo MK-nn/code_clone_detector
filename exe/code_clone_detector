@@ -8,7 +8,7 @@ require "ripper"
 code = []
 
 Dir.glob("**/*") do |file_name|
-  if file_name.include?(".rb")
+  if file_name.include?(".rb") && file_name.include?((ARGV[0]).to_s)
     File.open(file_name, "r") do |file|
       file_content = file.read
       code.push([file_name.to_s, Ripper.lex(file_content)])
