@@ -40,7 +40,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/MK-nn/code_clone_detector. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/MK-nn/code_clone_detector/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/MK-nn/code_clone_detector. If you'd like to contribute to this project, check out our [guide to contributing](https://github.com/MK-nn/code_clone_detector/blob/master/GUIDE_TO_CONTRIBUTING.md) for more information. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/MK-nn/code_clone_detector/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
