@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0]
+- Fix bug
+- Output log at runtime
+
+## [1.0.2]
+- Refactor
+
 ## [1.0.1] - 2023-03-07
 
 - Fix bug in specifying the array index
